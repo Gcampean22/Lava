@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@lavanet/lava-sdk": "^0.21.1",
+    "aptos": "^1.19.0",
+    "typescript": "^5.2.2",
+    "yarn": "^1.22.19"
+  },
+  "name": "lava",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
