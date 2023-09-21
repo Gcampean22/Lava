@@ -9,29 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const aptos_1 = require("aptos");
-const lava_sdk_1 = require("@lavanet/lava-sdk");
-function runAptosRequest(aptosClient, accountAddress) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const result = yield aptosClient.getAccountResources(accountAddress);
-            return result;
-        }
-        catch (error) {
-            throw error;
-        }
-    });
-}
+const Aptos_1 = require("Aptos");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const lavaGatewayRpcUrl = 'https://gateway.lavanet.xyz/projects/817b9e24bd1ad2619b69bdab90ad3383';
             const doNotFixNodeUrl = !lavaGatewayRpcUrl.endsWith('/v1');
-            const aptosClient = new aptos_1.Aptos({
+            const aptosClient = new Aptos_1.Aptos({
                 nodeUrl: lavaGatewayRpcUrl,
                 doNotFixNodeUrl,
             });
-            const lavaSDK = yield new lava_sdk_1.LavaSDK({
+            // Add your additional code here
+            const sdk = require("@lavanet/lava-sdk");
+            const lavaSDK = yield new sdk.LavaSDK({
                 badge: {
                     badgeServerAddress: "https://badges.lavanet.xyz",
                     projectId: "817b9e24bd1ad2619b69bdab90ad3383",
@@ -45,12 +35,11 @@ function main() {
                 url: "/",
             });
             const accountAddress = '0xb794f5ea0ba39494ce839613fffba74279579268';
-            yield runAptosRequest(aptosClient, accountAddress);
             let validRequestCount = 0;
             let errorCount = 0;
             for (let i = 0; i < 100; i++) {
                 try {
-                    yield runAptosRequest(aptosClient, accountAddress);
+                    const result = yield aptosClient.getAccountResources(accountAddress);
                     validRequestCount++;
                 }
                 catch (error) {
