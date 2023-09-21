@@ -9,17 +9,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Aptos_1 = require("Aptos");
+const aptos_1 = require("aptos");
+const blockchainInfo = {
+    chain_id: 1,
+    epoch: "4138",
+    ledger_version: "270507752",
+    oldest_ledger_version: "120707752",
+    ledger_timestamp: "1695324045201005",
+    node_role: "full_node",
+    oldest_block_height: "46900972",
+    block_height: "94924592",
+    git_hash: "84a67d185df4a9c12947f6091d0c0dc3427703f1",
+};
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const lavaGatewayRpcUrl = 'https://gateway.lavanet.xyz/projects/817b9e24bd1ad2619b69bdab90ad3383';
+            const lavaGatewayRpcUrl = 'https://g.w.lavanet.xyz:443/gateway/apt1/rest/817b9e24bd1ad2619b69bdab90ad3383';
             const doNotFixNodeUrl = !lavaGatewayRpcUrl.endsWith('/v1');
-            const aptosClient = new Aptos_1.Aptos({
-                nodeUrl: lavaGatewayRpcUrl,
-                doNotFixNodeUrl,
-            });
-            // Add your additional code here
+            const aptosClient = new aptos_1.AptosClient(lavaGatewayRpcUrl);
             const sdk = require("@lavanet/lava-sdk");
             const lavaSDK = yield new sdk.LavaSDK({
                 badge: {
@@ -47,6 +54,7 @@ function main() {
                     console.error('Error:', error);
                 }
             }
+            console.log("Blockchain Info:", blockchainInfo);
             console.log(`Valid Requests: ${validRequestCount}, Errors: ${errorCount}`);
         }
         catch (error) {
