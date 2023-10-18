@@ -1,4 +1,4 @@
-# Lava Integration Challenge
+# Lava Integration 
 
 This repository contains code for the Lava Integration Challenge. It integrates the Aptos TypeScript SDK with the Lava Gateway RPC service. Follow the instructions below to set up and run the project.
 
